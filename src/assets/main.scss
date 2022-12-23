@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&family=Unbounded:wght@300&display=swap');
+@import './mixins';
+@import './variables.scss';
+
+body {
+    font-family: 'Unbounded', cursive;
+    color: $darkBlue;
+    background-color: $lightBg;
+}
+
+header {
+    border-bottom: $xxs outset;
+    box-shadow: $xxs $xxs $s $grayInput;
+    font-family: 'Unbounded', cursive;
+    * {
+        font-weight: bold;
+        color: inherit;
+    }
+}
+select,
+button,
+.input_box {
+    @include display-flex('center');
+    padding: $s;
+    border-radius: $xs;
+    border: $xxs outset;
+    background-color: $lightBoxes;
+}
+a {
+    text-decoration: none;
+    color: inherit
+}
+input {
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: inherit;
+}
+::placeholder {
+    color: $darkBlue;
+}
+.flex-center {
+    @include display-flex('center');
+}
+.flex-between {
+    @include display-flex('between');
+}

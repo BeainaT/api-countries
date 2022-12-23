@@ -1,9 +1,10 @@
 <template>
+
     <router-link  :to="{ name: 'details', params: { id: this.$props.id}}">
         <div :id="id">
                     <img :src="flag" :alt="name +' flag'">
                     <h3>nome: {{name}}</h3>
-                    <p>popolazione: {{ population }}</p>
+                    <p>popolazione: {{ population.toLocaleString() }}</p>
                     <p>regione: {{region}}</p>
                     <p>capitale: {{capital}}</p>
                 </div>
@@ -14,7 +15,7 @@
 export default {
     props: {
         name: String,
-        population: String,
+        population: Number,
         region: String,
         capital: String,
         flag: String,

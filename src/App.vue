@@ -1,5 +1,12 @@
 <script setup>
+// import { onBeforeMount } from 'vue';
+import {useStore} from 'vuex';
 import HeaderComponent from './components/HeaderComponent.vue';
+const store = useStore();
+store.dispatch('apiCall');
+
+// call = store.getters.filteredCountries;
+// call
 </script>
 
 <template>
@@ -8,17 +15,13 @@ import HeaderComponent from './components/HeaderComponent.vue';
   </header>
 
   <main>
-    <router-view></router-view>
+    <router-view>
+    </router-view>
+
   </main>
 </template>
 
-<style lang="scss" scoped>
-$red: #ff0000;
-header {
-  color: $red;
-  line-height: 1.5;
-}
-
+<style lang="scss">
 .logo {
   display: block;
   margin: 0 auto 2rem;
