@@ -31,10 +31,11 @@ const store = createStore({
               name: country.name,
               population: country.population,
               region: country.region,
-              capital: country.capital,
+              subregion: country.subregion,
+              capital: country.capital.toString(),
               flag: country.flags.png,
               borders: country.borders,
-              tld: country.tld,
+              tld: country.tld.toString(),
               currencies: country.currencies,
               lang: country.languages,
               cca3: country.cca3,
@@ -49,11 +50,19 @@ const store = createStore({
   mutations: {
     SAVE_COUNTRIES(state, payload) {
       for (const key in payload) {
-        if (Array.isArray(payload[key]) && key !== "borders") {
-          payload[key] = payload[key].toString();        
+        if(isNaN(payload[key]) && Object.keys(payload[key]).length === 0 || payload[key].length === 0) {
+            key === "borders" ? 
+            payload[key] = ['no countries around'] : 
+            payload[key] = `no ${key} found for ${payload.name.common}`;
+        } else if(Object.keys(payload[key]).length > 0){
+          for(const nestedKey in payload[key]) {
+            Object.keys(payload[key][nestedKey]).length === 0 ? 
+            payload[key][nestedKey] = `no ${nestedKey} found for ${payload.name.common}` : 
+            payload[key][nestedKey];
+          }
         } else {
-          payload[key];
-        }
+          payload[key]
+        }        
       }
       if (!state.countries.includes(payload)) {
         state.countries.push(payload);

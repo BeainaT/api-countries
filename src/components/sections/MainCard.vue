@@ -2,12 +2,24 @@
 
     <router-link  :to="{ name: 'details', params: { id: this.$props.id}}">
         <div :id="id">
-                    <img :src="flag" :alt="name +' flag'">
-                    <h3>nome: {{name}}</h3>
-                    <p>popolazione: {{ population.toLocaleString() }}</p>
-                    <p>regione: {{region}}</p>
-                    <p>capitale: {{capital}}</p>
+            <div class="flex-center my-3 img_box">
+                <img :src="flag" :alt="name +' flag'">
+            </div>
+            <div class="card_info">
+                <div>
+                    <strong>name:</strong> <p> {{name}}</p>
                 </div>
+                <div>
+                    <strong>population:</strong> <p> {{ population.toLocaleString() }}</p>
+                </div>
+                <div>
+                    <strong>region:</strong><p> {{region}}</p>
+                </div>
+                <div>
+                    <strong>capital:</strong><p> {{capital}}</p>
+                </div>
+            </div>
+        </div>
     </router-link>
 </template>
 
@@ -25,11 +37,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card__container {
-    width: 12.5rem;
-    border: 1px solid black;
     img {
-        width: 100%;
+        width: 250px;
+        height: 150px;
+        border-radius: .3125rem;
+    }
+
+.card_info {
+    strong {
+        text-transform: uppercase;
+        opacity: 0.9;
+    }
+    p {
+        font-size: 1.2rem;
+    }
+    * {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: baseline;
+        gap: .625rem;
     }
 }
 
