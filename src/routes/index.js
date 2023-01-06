@@ -3,7 +3,7 @@ import MainComponent from '../components/MainComponent.vue';
 import CountryDetails from '../components/sections/CountryDetails.vue';
 
 const routes = [
-    {path: '/', component: MainComponent},
+    {path: '/', name: 'home', component: MainComponent},
     {path: '/det/:id', name: 'details', component: CountryDetails}
 ]
 

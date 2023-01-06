@@ -6,32 +6,58 @@ body {
     font-family: 'Unbounded', cursive;
     color: $darkBlue;
     background-color: $lightBg;
+    &.dark_mode {
+        color: $grayInput;
+        background-color: $darkBlue;
+        .main_card,
+        .btn_cst,
+        select,
+        .input_box {
+            color: inherit;
+            background-color: $darkBg;
+            border-color: $darkBlue;
+            filter: drop-shadow($xxs $xxs $xxs $grayInput);
+        }
+        h1,
+        img {
+            filter: drop-shadow($xxs $xxs $xxs $grayInput);
+        }
+        h1 {
+            text-shadow: $xs $xxs $xxs $darkBlue;
+        }
+        ::placeholder {
+            color: $grayInput;
+        }
+    }
 }
 
 header {
     border-bottom: $xxs outset;
     box-shadow: $xxs $xxs $s $grayInput;
-    font-family: 'Unbounded', cursive;
+    padding: $s 0;
     * {
         font-weight: bold;
         color: inherit;
+        flex-wrap: wrap
     }
 }
 select,
-button.btn,
-.input_box {
+.input_box,
+.btn_cst {
     @include display-flex('center');
     padding: $s;
     border-radius: $xs;
     border: $xxs outset;
     background-color: $lightBoxes;
     outline: none;
+    border-color: $lightBg;
+    filter: drop-shadow($xxs $xxs $xxs $darkBlue);
 }
 a {
     text-decoration: none;
     color: inherit;
     &:hover {
-        color: inherit
+        color: inherit;
     }
 }
 input {
@@ -39,6 +65,7 @@ input {
     border: none;
     outline: none;
     background-color: inherit;
+    color: inherit;
 }
 ::placeholder {
     color: $darkBlue;
@@ -50,7 +77,6 @@ input {
     @include display-flex('between');
 }
 h1,
-.main_card,
 img {
-    filter: drop-shadow($xs $xs $xs $darkBlue)
+    filter: drop-shadow($xxs $xxs $xxs $darkBlue);
 }

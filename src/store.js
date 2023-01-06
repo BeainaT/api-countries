@@ -7,10 +7,21 @@ const store = createStore({
       countries: [],
       search: '',
       selectRegion: '',
-      isShown: true
+      isShown: true,
+      darkMode: false,
+      pagination: {
+        page: 1,
+        perPage: 24
+      }
     };
   },
   actions: {
+    switchMode({commit}) {
+      commit('SET_MODE')
+    },
+    setPage({commit}, number){
+      commit('SET_PAGE', number)
+    },
     search({ commit }, payload) {
       commit("SEARCH_TEXT", payload);
     },
@@ -81,22 +92,29 @@ const store = createStore({
       } else {
         state.isShown = false
       }
-      return state.isShown
+    },
+    SET_PAGE(state, number) {
+      state.pagination.page = number;
+    },
+    SET_MODE(state) {
+      state.darkMode = !state.darkMode
     }
   },
   getters: {
     filteredCountries(state) {
+      let filteredCountries;
       if(state.search == '' && ['all', ''].includes(state.selectRegion)) {
-        return state.countries;
+        filteredCountries = state.countries
       } else if(!['all', ''].includes(state.selectRegion) && state.search !== '') {
-        return state.countries.filter((country) => country.region == state.selectRegion && country.name.common.toLowerCase().includes(state.search.toLowerCase()));
+        filteredCountries = state.countries.filter((country) => country.region == state.selectRegion && country.name.common.toLowerCase().includes(state.search.toLowerCase()));
       } else if(state.search !== ''){
-        return state.countries.filter((country) => country.name.common.toLowerCase().includes(state.search.toLowerCase()))
+        filteredCountries = state.countries.filter((country) => country.name.common.toLowerCase().includes(state.search.toLowerCase()))
       } else {
-        return state.countries.filter((country) => country.region == state.selectRegion)
+        filteredCountries = state.countries.filter((country) => country.region == state.selectRegion)
       }
+      return filteredCountries;
     },
   },
 });
 
-export default store;
+export default store;    

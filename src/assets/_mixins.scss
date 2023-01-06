@@ -5,6 +5,8 @@
         justify-content: space-between;
     }@else if $justify == 'space' {
         justify-content: space-around;
+    }@else if $justify == 'end' {
+        justify-content: flex-end;
     }@else {
         justify-content: center;
     }
