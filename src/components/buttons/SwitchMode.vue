@@ -47,7 +47,7 @@ import { useStore } from 'vuex';
         &:checked {
             background-image: $toggleSwitch;
         }
-}
+    }
 }
 
 

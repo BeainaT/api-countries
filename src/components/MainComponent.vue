@@ -16,9 +16,9 @@
     </div>
     <MainPagination />
     <div class="row g-4 justify-content-md-evenly justify-content-sm-center">
-      <template v-if="filteredCountry.length < 1">
+      <template v-if="filteredCountry.length < 1 && store.state.search !== ''">
         <div>
-          no result found for "{{ text }}" in
+          Ops, no result found for "{{ text }}" in
           {{ notFound(store.state.selectRegion) }}
         </div>
       </template>
@@ -44,7 +44,7 @@
 <script setup>
 import MainCard from "./sections/MainCard.vue";
 import MainPagination from "./commons/MainPagination.vue";
-import { computed, onBeforeMount } from "vue";
+import { computed, onBeforeMount} from "vue";
 import { useStore } from "vuex";
 
 const store = useStore();
