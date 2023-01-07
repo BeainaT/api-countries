@@ -18,6 +18,7 @@ export default {
     },
     methods: {
         toggleSort(id, label) {
+            //show icons and change style sort-related
             this.sortButtons[id].sortData = !this.sortButtons[id].sortData;
             this.sortButtons[id].display = 'display:inline-block';
             if(!this.sortButtons[id].sortData) {

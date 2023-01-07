@@ -25,6 +25,8 @@ import Paginate from "vuejs-paginate-next";
 import { computed } from "vue";
 import { useStore } from "vuex";
 const store = useStore();
+
+//return triggered page value
 const page = computed({
   get() {
     return store.state.pagination.page;
@@ -33,6 +35,7 @@ const page = computed({
     return store.dispatch("setPage", number);
   },
 });
+
 const pageCount = computed(() =>
   Math.ceil(
     store.getters.filteredCountries.length / store.state.pagination.perPage

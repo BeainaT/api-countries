@@ -50,6 +50,7 @@ import { useStore } from "vuex";
 const store = useStore();
 onBeforeMount(() => store.dispatch("show"));
 
+//set v-model value
 const text = computed({
   get() {
     return store.state.search;
@@ -59,6 +60,7 @@ const text = computed({
   },
 });
 
+//return setted countries perPage
 const filteredCountry = computed(() => {
   return store.getters.filteredCountries.slice(
     (store.state.pagination.page - 1) * store.state.pagination.perPage,
@@ -66,6 +68,7 @@ const filteredCountry = computed(() => {
   );
 });
 
+//return old country id in new pagination
 const getIndex = (id) =>
   store.state.pagination.page === 1
     ? id

@@ -37,6 +37,8 @@ const triggeredBorder = () => {
   store.dispatch("search", "");
   store.dispatch("select", "all");
 };
+
+//return country that matches its code (cca3) with selected border
 const countryFromBorderId = (selectedBorder) => {
   const myCountry = store.getters.filteredCountries[route.params.id];
   let border = myCountry.borders.filter((border) => border == selectedBorder);

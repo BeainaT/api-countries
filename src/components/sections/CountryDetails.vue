@@ -44,6 +44,8 @@ const countryDetails = computed(() => {
     const id = route.params.id;
     return store.getters.filteredCountries[id];
 });
+
+//function for manipulate obj with different key and value setted in api
 const getObjValue = (obj) => {
     if(obj.length !== undefined) {
         return obj

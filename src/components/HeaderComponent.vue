@@ -40,6 +40,7 @@ const toggleMenu = () => {
 
 
 const selectValue = (e) => store.dispatch('select', e.target.value);
+
 const worldRegion = computed(() => new Set(store.state.countries.map((country) => country.region)))
 </script>
 
