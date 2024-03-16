@@ -6,23 +6,25 @@
                     <box-icon :color="iColor" name='arrow-back'></box-icon>
                 </router-link>
             </div>
-            <div class="col-lg-4 col-md-5 col-sm-10">
-                <img :src="countryDetails.flag" :alt="countryDetails.name.common + ' flag'">
-            </div>
-            <div class="col-lg-7 col-md-7 col-sm-10 mt-4">
-                <h3>{{countryDetails.name.common}}</h3>
-                <div class="row">
-                    <div class="col-lg-6 col-md-10 col-sm-12">
-                        <div><strong>population: </strong>{{countryDetails.population.toLocaleString()}}</div>
-                        <div><strong>region: </strong>{{countryDetails.region}}</div>
-                        <div><strong>sub region: </strong>{{countryDetails.subregion}}</div>
-                        <div><strong>capital: </strong>{{countryDetails.capital }}</div>
-                    </div>
-                    <div class="col-lg-6 col-md-10 col-sm-12">
-                        <div><strong>native name: </strong>{{getObjValue(countryDetails.name.nativeName)}}</div>
-                        <div><strong>currencies: </strong>{{getObjValue(countryDetails.currencies)}}</div>
-                        <div><strong>top level domain: </strong>{{countryDetails.tld}}</div>
-                        <div><strong>languages: </strong>{{getObjValue(countryDetails.lang)}}</div>
+            <div class="row">
+                <div class="col-lg-4 col-md-5 col-sm-10">
+                    <img :src="countryDetails.flag" :alt="countryDetails.name.common + ' flag'">
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-10 mt-4">
+                    <h3>{{countryDetails.name.common}}</h3>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-10 col-sm-12">
+                            <div><strong>population: </strong>{{countryDetails.population.toLocaleString()}}</div>
+                            <div><strong>region: </strong>{{countryDetails.region}}</div>
+                            <div><strong>sub region: </strong>{{countryDetails.subregion}}</div>
+                            <div><strong>capital: </strong>{{countryDetails.capital }}</div>
+                        </div>
+                        <div class="col-lg-6 col-md-10 col-sm-12">
+                            <div><strong>native name: </strong>{{getObjValue(countryDetails.name.nativeName)}}</div>
+                            <div><strong>currencies: </strong>{{getObjValue(countryDetails.currencies)}}</div>
+                            <div><strong>top level domain: </strong>{{countryDetails.tld}}</div>
+                            <div><strong>languages: </strong>{{getObjValue(countryDetails.lang)}}</div>
+                        </div>
                     </div>
                 </div>
             </div>

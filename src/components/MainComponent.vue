@@ -15,7 +15,7 @@
       </div>
     </div>
     <MainPagination />
-    <div class="row g-4 justify-content-md-evenly justify-content-sm-center">
+    <div class="row g-4 justify-content-md-evenly justify-content-center">
       <template v-if="filteredCountry.length < 1 && store.state.search !== ''">
         <div>
           Ops, no result found for "{{ text }}" in
