@@ -1,9 +1,9 @@
 <template>
-  <div class="row flex-column my-3">
-    <div class="col flex-center">
+  <div class="">
+    <div class="text-center mb-2">
       <strong>Borders: </strong>
     </div>
-    <div class="col flex-wrap flex-center gap-3 my-2">
+    <div class="col flex-wrap flex-center gap-3 my-4" v-if="countryDetails && Object.keys(countryDetails).length > 0">
       <span v-for="border in countryDetails.borders" :key="border.index">
         <template v-if="border.length < 4">
           <router-link
@@ -13,10 +13,10 @@
             {{ border }}
           </router-link>
         </template>
-        <template v-else>
-          <button class="btn_cst" disabled>{{ border }}</button>
-        </template>
       </span>
+      <template v-if="countryDetails.borders.length == 0">
+        <button class="btn_cst" disabled>no borders</button>
+      </template>
     </div>
   </div>
 </template>

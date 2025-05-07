@@ -2,14 +2,14 @@
   <paginate class="my-5"
     v-model="page"
     :page-count="pageCount"
-    :page-range="3"
-    :margin-pages="3"
+    :page-range="pageCount"
+    :margin-pages="0"
     :prev-text="'<'"
     :next-text="'>'"
     :container-class="'pagination'"
     :page-class="'page-item'"
     :page-link-class="'page-link flex-center'"
-    :hidePrevNext="true"
+    :hidePrevNext="!pageCount"
   >
   </paginate>
 </template>
@@ -55,8 +55,6 @@ const pageCount = computed(() =>
     .active>.page-link, 
     .page-item>.page-link,
     .page-link.active {
-      border: 2px outset;
-      border-color:inherit;
       cursor: pointer;
       &:active,
       &:focus {
@@ -68,11 +66,18 @@ const pageCount = computed(() =>
     .page-link.active {
       text-decoration: underline;
     }
+    .page-item.disabled>.page-link {
+      background-color: #e9e8ef;
+      color: #a0a0a1;
+      border-color: #a0a0a1;
+    }
     .page-link {
       border-radius: .3125rem;
       width: 2.5rem;
       color: inherit;
-      background-color: inherit;
+      background-color: #e2eafc;
+      // border: 0.125rem outset;
+      border-color:inherit;
     }
 }
 </style>

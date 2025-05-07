@@ -6,13 +6,17 @@ const store = createStore({
     return {
       countries: [],
       search: "",
-      selectRegion: "",
+      selectRegion: "all",
       isShown: true,
-      darkMode: false,
+      darkMode: true,
       pagination: {
         page: 1,
         perPage: 24,
       },
+      sort: {
+        name: false,
+        population: false
+      }
     };
   },
   actions: {
@@ -32,64 +36,44 @@ const store = createStore({
       commit("SHOW_FILTER", payload);
     },
     apiCall({ commit }) {
+      let countries = [];
       axios
         .get(
           "https://restcountries.com/v3.1/all?fields=name,borders,tld,population,region,flags,subregion,capital,currencies,languages,cca3"
         )
         .then((res) => {
           res.data.forEach((country) => {
-            const countryData = {
-              name: country.name,
-              population: country.population,
-              region: country.region,
-              subregion: country.subregion,
-              capital: country.capital.toString(),
-              flag: country.flags.png,
-              borders: country.borders,
-              tld: country.tld.toString(),
-              currencies: country.currencies,
-              lang: country.languages,
-              cca3: country.cca3,
-            };
-
-            commit("SAVE_COUNTRIES", countryData);
+            const {name, population, region, subregion, capital, flag, borders, tld, currencies, languages, cca3} = country;
+            countries.push(country);
           });
+          commit("SAVE_COUNTRIES", countries);
         })
         .catch((e) => console.log(e));
     },
+    sortData({commit}, data) {
+      commit('SORT_DATA', data);
+    }
   },
   mutations: {
-    SAVE_COUNTRIES(state, payload) {
+    SORT_DATA(state, payload) {
+      state.sort[payload.key] = payload.value;
 
-      for (const key in payload) {
-        if (
-          (isNaN(payload[key]) && Object.keys(payload[key]).length === 0) ||
-          payload[key].length === 0
-        ) {
-          key === "borders"
-            ? (payload[key] = ["no countries around"])
-            : (payload[key] = `no ${key} found for ${payload.name.common}`);
-        } else if (Object.keys(payload[key]).length > 0) {
-          for (const nestedKey in payload[key]) {
-            Object.keys(payload[key][nestedKey]).length === 0
-              ? (payload[key][
-                  nestedKey
-                ] = `no ${nestedKey} found for ${payload.name.common}`)
-              : payload[key][nestedKey];
-          }
-        } else {
-          payload[key];
-        }
+      if (payload.key == 'name') {
+        return state.sort.name == 'asc' ? state.countries.sort((a, b) => b.name.common.localeCompare(a.name.common)) : state.countries.sort((a, b) => a.name.common.localeCompare(b.name.common));
       }
-      if (!state.countries.includes(payload)) {
-        state.countries.push(payload);
+      if (payload.key == 'population') {
+        return state.sort.population == 'asc' ? state.countries.sort((a, b) => a.population - b.population) : state.countries.sort((a, b) => b.population - a.population);
       }
+    },
+    SAVE_COUNTRIES(state, payload) {
+      state.countries = payload;      
     },
     SEARCH_TEXT(state, payload) {
       state.search = payload;
     },
     SELECT_REGION(state, value) {
       state.selectRegion = value;
+      state.pagination.page = 1;
     },
     SHOW_FILTER(state, payload) {
       if (payload !== "countryDetails") {
@@ -107,14 +91,13 @@ const store = createStore({
   },
   getters: {
     filteredCountries(state) {
-      let filteredCountries;
       if (state.search == "" && ["all", ""].includes(state.selectRegion)) {
-        filteredCountries = state.countries;
+        return state.countries;
       } else if (
         !["all", ""].includes(state.selectRegion) &&
         state.search !== ""
       ) {
-        filteredCountries = state.countries.filter(
+        return state.countries.filter(
           (country) =>
             country.region == state.selectRegion &&
             country.name.common
@@ -122,15 +105,14 @@ const store = createStore({
               .includes(state.search.toLowerCase())
         );
       } else if (state.search !== "") {
-        filteredCountries = state.countries.filter((country) =>
+        return state.countries.filter((country) =>
           country.name.common.toLowerCase().includes(state.search.toLowerCase())
         );
       } else {
-        filteredCountries = state.countries.filter(
+        return state.countries.filter(
           (country) => country.region == state.selectRegion
         );
       }
-      return filteredCountries;
     },
   },
 });

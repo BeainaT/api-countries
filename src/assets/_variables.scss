@@ -1,19 +1,36 @@
-    // colors 
-$darkBlue: #2b3945;
+// colors 
+$darkBlue: #001a2c;
 $focusCardLight: #425668;
-$darkBg: #202c37;
-$lightText: #111517;
-$grayInput: #bfbdbd;
-$lightBoxes: #f3efef;
-$lightBg: #fafafa;
+$darkBg: #002945;
+$lightText: #001a2c;
+$grayInput: #edf2fb;
+$lightBoxes: #e2eafc;
+$lightBg: #edf2fb;
+$lightShadow: #d7e3fc;
 $white: #ffffff;
+$darkElm: #00406c;
 
-    // spaces
+//dark
+// #001a2c
+// #002137
+// #002945
+// #002e4e
+// #003356
+// #003a61
+// #00406c
+
+//light
+// #edf2fb
+// #e2eafc
+// #d7e3fc
+// #ccdbfd
+// #c1d3fe
+// #b6ccfe
+// #abc4ff
+
+// spaces
 $xxs: .125rem;
-$xs: .3125rem;
+$xs: .5rem;
 $s: .625rem;
 $s-m: 1.25rem;
 $lg: 2.5rem;
-
-    // toggleSwitchSvg
-$toggleSwitch: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");

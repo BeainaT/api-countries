@@ -9,7 +9,7 @@
           @keydown="setPagination"
         />
         <box-icon
-          :color="store.state.darkMode ? '#bfbdbd' : '#2b3945'"
+          :color="store.state.darkMode ? '#edf2fb' : '#001a2c'"
           name="search-alt"
         ></box-icon>
       </div>
@@ -33,7 +33,7 @@
           :population="country.population"
           :region="country.region"
           :capital="country.capital"
-          :flag="country.flag"
+          :flag="country.flags"
         />
       </div>
     </div>
@@ -91,9 +91,9 @@ const notFound = (value) => {
   min-height: 28rem;
   max-width: 18.75rem;
   padding: 0;
-  border-style: none outset outset none;
+  // border-style: none outset outset none;
   overflow: hidden;
-  filter: drop-shadow($xs $xs $xs $darkBlue);
+  border-color: inherit;
   &:hover {
     animation: shake 0.5s;
     animation-iteration-count: infinite;

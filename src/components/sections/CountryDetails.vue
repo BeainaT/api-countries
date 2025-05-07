@@ -1,31 +1,24 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-md-between justify-content-sm-center align-items-center">
-            <div class="col-md-10 col-sm-10 my-4">
-                <router-link :to="{name: 'home'}" class="btn_cst col-2">
+    <div class="main-details-wrapper">
+        <div class="mb-4">
+            <div class="mt-0 mt-sm-3 mb-4">
+                <router-link :to="{name: 'home'}" class="btn_cst col-sm-1 col-2">
                     <box-icon :color="iColor" name='arrow-back'></box-icon>
                 </router-link>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-5 col-sm-10">
-                    <img :src="countryDetails.flag" :alt="countryDetails.name.common + ' flag'">
-                </div>
-                <div class="col-lg-7 col-md-7 col-sm-10 mt-4">
-                    <h3>{{countryDetails.name.common}}</h3>
-                    <div class="row">
-                        <div class="col-lg-6 col-md-10 col-sm-12">
-                            <div><strong>population: </strong>{{countryDetails.population.toLocaleString()}}</div>
-                            <div><strong>region: </strong>{{countryDetails.region}}</div>
-                            <div><strong>sub region: </strong>{{countryDetails.subregion}}</div>
-                            <div><strong>capital: </strong>{{countryDetails.capital }}</div>
-                        </div>
-                        <div class="col-lg-6 col-md-10 col-sm-12">
-                            <div><strong>native name: </strong>{{getObjValue(countryDetails.name.nativeName)}}</div>
-                            <div><strong>currencies: </strong>{{getObjValue(countryDetails.currencies)}}</div>
-                            <div><strong>top level domain: </strong>{{countryDetails.tld}}</div>
-                            <div><strong>languages: </strong>{{getObjValue(countryDetails.lang)}}</div>
-                        </div>
-                    </div>
+            <div class="text-sm-center" v-if="countryDetails && Object.values(countryDetails).length > 0">
+                <img class="main_card" :src="countryDetails?.flags?.png" :alt="countryDetails?.flags?.alt ? countryDetails.flags.alt : countryDetails.name.common + ' flag'">
+                <h3 class="mt-5 mb-4">{{countryDetails?.name.common}}</h3>
+                <div class="d-flex flex-column gap-1">
+                    <div><strong>population: </strong>{{countryDetails.population.toLocaleString()}}</div>
+                    <div><strong>region: </strong>{{countryDetails.region}}</div>
+                    <div><strong>sub region: </strong>{{countryDetails.subregion}}</div>
+                    <div><strong>capital: </strong>{{countryDetails.capital ? countryDetails.capital.toString() : '-' }}</div>
+                    <div><strong>native name: </strong>{{getObjValue(countryDetails.name.nativeName)}}</div>
+                    <div><strong>currencies: </strong>{{getObjValue(countryDetails.currencies)}}</div>
+                    <div><strong>top level domain: </strong>{{countryDetails.tld ? countryDetails.tld.toString() : '-'}}</div>
+                    <div><strong>languages: </strong>{{getObjValue(countryDetails.languages)}}</div>
+
                 </div>
             </div>
         </div>
@@ -34,7 +27,7 @@
 </template>
 
 <script setup>
-import { computed, onBeforeMount} from 'vue';
+import { computed, onBeforeMount, onMounted} from 'vue';
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 import CountryBorders from '../commons/CountryBorders.vue';
@@ -46,6 +39,13 @@ const countryDetails = computed(() => {
     const id = route.params.id;
     return store.getters.filteredCountries[id];
 });
+
+onMounted(() => {
+    const header = document.getElementsByTagName('header')[0];
+    const showable = document.querySelector('.sort_container');
+    if (header) header.style.height = 'fit-content';
+    if (showable) showable.classList.remove('active');
+})
 
 //function for manipulate obj with different key and value setted in api
 const getObjValue = (obj) => {
@@ -65,22 +65,31 @@ const getObjValue = (obj) => {
     }
 }
 const iColor = computed(() => {
-    return store.state.darkMode ? "#bfbdbd" : "#2b3945";
+    return store.state.darkMode ? "#edf2fb" : "#001a2c";
 });
 </script>
 
 <style lang="scss" scoped>
 @import '../../assets/main.scss';
 
-.btn_cst {
-   filter: drop-shadow($xs $xxs $xxs $grayInput);
-}
 img {
     width: 100%;
+    max-width: 25rem;
+    height: 14rem;
     max-height: 15.625rem;
     border-radius: $xs;
 }
+h3 {
+    font-weight: bold;
+}
 strong {
     text-transform: capitalize;
+}
+.main-details-wrapper {
+    height: 100%;
+    display: grid;
+    @media screen and (width >= 640px) {
+        padding: 0 16px;
+    }
 }
 </style>

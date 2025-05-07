@@ -1,21 +1,15 @@
 <template>
-    <div class="flex-center">
-        <box-icon name='moon' :color="iColor.dark"></box-icon>
-        <div class="form-check form-switch">
-            <input class="form-check-input drop_btn" type="checkbox" role="switch" id="flexSwitchCheckChecked" @click="showFilter()" checked>
-        </div>
-        <box-icon name='sun' :color="iColor.light"></box-icon>
+    <div class="flex-center switch-container">
+        <button class="btn_cst icon" @click="toggleTheme">
+            <box-icon :name="store.state.darkMode ? 'moon' : 'sun'" :color="!store.state.darkMode ? '#002945':'#edf2fb'"></box-icon>
+        </button>
     </div>
 </template>
 
 <script setup>
 import { useStore } from 'vuex';
     const store = useStore();
-    const iColor = {
-        light: '#2b3945',
-        dark: '#fafafa'
-    };
-    const showFilter = () => {
+    const toggleTheme = () => {
         store.dispatch('switchMode')
         if(store.state.darkMode) {
             document.body.classList.add('dark_mode')
@@ -28,27 +22,13 @@ import { useStore } from 'vuex';
 <style lang="scss" scoped>
 @import '../../assets/main.scss';
 
-.form-check-input {
-    background-color: $grayInput;
-    &:checked {
-        background-color: $darkBg;
-    }
-    &:focus {
-        border-color: none;
-        box-shadow: none;
-    }
-}
-.form-switch {
-    padding: 0 $xs;
-    .form-check-input {
-        margin: $xs;
-        background-image: $toggleSwitch;
-        &:focus,
-        &:checked {
-            background-image: $toggleSwitch;
+    @media screen and (width < 640px) {
+        .switch-container {
+            position: absolute;
+            right: 16px;
+            top: 16px;
         }
     }
-}
 
 
 </style>

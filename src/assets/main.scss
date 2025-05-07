@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&family=Unbounded:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&family=Unbounded:wght@300;600&display=swap');
 @import './mixins';
 @import './variables.scss';
 
@@ -8,37 +8,67 @@ body {
     background-color: $lightBg;
     &.dark_mode {
         color: $grayInput;
-        background-color: $darkBlue;
+        background-color: $darkBg;
         .main_card,
-        .btn_cst,
+        .btn_cst:not(:disabled),
         select,
-        .input_box {
+        .input_box,
+        .select-box {
             color: inherit;
-            background-color: $darkBg;
+            background-color: $darkElm;
             border-color: $darkBlue;
-            filter: drop-shadow($xxs $xxs $xxs $grayInput);
-        }
-        h1,
-        img {
-            filter: drop-shadow($xxs $xxs $xxs $grayInput);
+            border: 1px solid
         }
         h1 {
-            text-shadow: $xs $xxs $xxs $darkBlue;
+            text-shadow: 4px $xxs $xxs $darkBlue;
         }
         ::placeholder {
             color: $grayInput;
+        }
+        .select-box {
+            .select-box-options {
+                div:hover {
+                    background-color: $darkBlue;
+                }
+            }
+        }
+        .page-link {
+            background-color: $darkElm;
+        }
+        header {
+            background-color: $darkBg;
+        }
+        .main_card {
+            box-shadow: $xs $xs $xs $darkBlue;
+            border: none;
+        }
+        .btn_cst:not(:disabled):hover,
+        .page-link:not(.disabled):hover,
+        .input_box:has(> input:focus) {
+            background-color: #002137;
         }
     }
 }
 
 header {
-    border-bottom: $xxs outset;
-    box-shadow: $xxs $xxs $s $grayInput;
-    padding: $s 0;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    border-bottom: 1px solid;
+    background-color: $lightBg;
+    padding: 16px;
+    @media screen and (width >= 640px) {
+        padding: 16px 32px;
+    }
     * {
         font-weight: bold;
         color: inherit;
         flex-wrap: wrap
+    }
+    h1 {
+        font-family: cursive;
+        text-shadow: 4px $xxs $xxs $lightShadow;
+        margin: 0
     }
 }
 select,
@@ -47,11 +77,9 @@ select,
     @include display-flex('center');
     padding: $s;
     border-radius: $xs;
-    border: $xxs outset;
+    border: 1px solid;
     background-color: $lightBoxes;
     outline: none;
-    border-color: $lightBg;
-    filter: drop-shadow($xxs $xxs $xxs $darkBlue);
 }
 a {
     text-decoration: none;
@@ -76,7 +104,28 @@ input {
 .flex-between {
     @include display-flex('between');
 }
-h1,
-img {
-    filter: drop-shadow($xxs $xxs $xxs $darkBlue);
+
+.btn_cst:active:not(:disabled) {
+    transform: scale(0.9);
+}
+
+main {
+    padding: 100px 16px 32px 16px;
+    min-height: 100vh;
+}
+
+@media screen and (width <= 640px) {
+    .btn_cst.icon {
+        padding: 6px;
+    }
+}
+
+.main_card {
+  box-shadow: $xs $xs $xs $lightShadow;
+}
+
+.btn_cst:not(:disabled):hover,
+.page-link:not(.disabled):hover,
+.input_box:has(> input:focus) {
+    background-color: #ccdbfd;
 }
