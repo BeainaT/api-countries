@@ -39,11 +39,11 @@ const store = createStore({
       let countries = [];
       axios
         .get(
-          "https://restcountries.com/v3.1/all?fields=name,borders,tld,population,region,flags,subregion,capital,currencies,languages,cca3"
+          "https://restcountries.com/v3.1/all?fields=name,borders,population,region,flags,subregion,capital,currencies,languages,cca3"
         )
         .then((res) => {
           res.data.forEach((country) => {
-            const {name, population, region, subregion, capital, flag, borders, tld, currencies, languages, cca3} = country;
+            const {name, population, region, subregion, capital, flag, borders, currencies, languages, cca3} = country;
             countries.push(country);
           });
           commit("SAVE_COUNTRIES", countries);

@@ -16,7 +16,6 @@
                     <div><strong>capital: </strong>{{countryDetails.capital ? countryDetails.capital.toString() : '-' }}</div>
                     <div><strong>native name: </strong>{{getObjValue(countryDetails.name.nativeName)}}</div>
                     <div><strong>currencies: </strong>{{getObjValue(countryDetails.currencies)}}</div>
-                    <div><strong>top level domain: </strong>{{countryDetails.tld ? countryDetails.tld.toString() : '-'}}</div>
                     <div><strong>languages: </strong>{{getObjValue(countryDetails.languages)}}</div>
 
                 </div>
