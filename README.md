@@ -1,6 +1,25 @@
-# api-countries
+# Api countries - World Flags App
 
-This template should help get you started developing with Vue 3 in Vite.
+**EN**: A web app that displays all the flags of the world with details for each country, to learn more about the world we live in.  
+Built with **Vue**, **JavaScript**, **SCSS** and **Vite** using **Axios** to fetch data.
+
+**IT**: Un’app web che mostra tutte le bandiere del mondo con i dettagli di ogni nazione, per imparare qualcosa in più del mondo in cui viviamo.  
+Sviluppata con **Vue**, **JavaScript** e **SCSS** e **Vite** usa **Axios** per recuperare i dati.
+
+[REST Countries API](https://restcountries.com/).
+
+
+## Features / Funzionalità
+
+**EN**: Display all world flags with details for each nation, filter countries by continent, sort countries by name and population, see and navigate between border countries, toggle between dark mode and light mode
+
+**IT**: Mostra tutte le bandiere del mondo con i dettagli di ogni nazione, filtra i paesi per continente, ordina i paesi per nome e popolazione, guarda e naviga tra i paesi confinanti, passa da tema scuro a tema chiaro
+
+##Purpose / Scopo
+
+**EN**: A portfolio project to demonstrate Vue 3, Vuex for state management, SCSS, and API integration with Axios
+
+**IT**: Un progetto da portfolio per dimostrare l’uso di Vue 3, Vuex per la gestione dello stato, SCSS e integrazione API con Axios
 
 ## Recommended IDE Setup
 
